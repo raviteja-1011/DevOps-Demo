@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="helloBean" class="com.genpact.beans.HelloBean" >
+	<property name="message" value="Helloworld Good Morning"/>
+	</bean>
+	<bean id="hiBean" class="com.genpact.beans.HelloBean">
+	<property name="message" value="Hi Good Afternoon"/>
+	</bean>
+ 	<bean id="ctrBean" class="com.genpact.beans.HelloBean">
+	  <constructor-arg  value="Hi world Constructor injection" /> 
+	</bean>
+	 <bean id="address" class="com.genpact.beans.Address">
+	 <property name="street" value="MG Road"/>
+	 <property name="city" value="Pune"/>
+	</bean>
+	<bean id="emp" class="com.genpact.beans.Employee">
+	<property name="empno" value="101"/>
+	<property name="ename" value="Geeta"/>
+	<property name="address" ref="address"/>
+	</bean>
+	<!-- if id=addressBean and property in EmployeeBean is addressBean u can use autowire -->
+<bean 
+class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+	<bean id="addressBean" class="com.genpact.annotationbeans.AddressBean">
+       <property name="street" value="Dadar"/>
+	  <property name="city" value="Mumbai"/>
+    </bean> 
+	<bean id="empBean" class="com.genpact.annotationbeans.EmployeeBean">
+	<property name="empno" value="102"/>
+	<property name="ename" value="Mehul"/>
+	</bean>	
+<bean id="empDao" class="com.genpact.dao.EmpDaoImpl"/>
+<bean id="empService" class="com.genpact.service.EmpServiceImpl">
+	<property name="empDao" ref="empDao"/>
+</bean>
+
+</beans>
